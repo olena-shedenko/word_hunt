@@ -38,6 +38,7 @@ const useStyles = makeStyles({
   definitions: {
     fontFamily: "Montserrat, sans-serif",
     fontWeight: "normal",
+    fontSize: "0.9rem",
   },
 });
 
@@ -80,13 +81,24 @@ const Definitions = ({
                   <Typography className={classes.textBold} variant="subtitle1">
                     {def.definition}
                   </Typography>
-                  <Divider />
+                  <Divider
+                    style={{
+                      backgroundColor: lightMode
+                        ? "rgba(255, 255, 255, 0.3)"
+                        : "rgba(0, 0, 0, 0.25)",
+                    }}
+                  />
                   {def.example && (
                     <Box>
                       <Typography component="span" className={classes.textBold}>
                         Example:{" "}
                       </Typography>
-                      <Typography component="span">{def.example}</Typography>
+                      <Typography
+                        component="span"
+                        className={classes.definitions}
+                      >
+                        {def.example}
+                      </Typography>
                     </Box>
                   )}
                   {def.synonyms && (
@@ -95,7 +107,12 @@ const Definitions = ({
                         Synonyms:{" "}
                       </Typography>
                       {def.synonyms.map((syn) => (
-                        <Typography component="span">{syn}, </Typography>
+                        <Typography
+                          component="span"
+                          className={classes.definitions}
+                        >
+                          {syn},{" "}
+                        </Typography>
                       ))}
                     </Box>
                   )}
